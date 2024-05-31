@@ -1,0 +1,111 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1713007379467-1
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: joke_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1713007379467-2
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: jokeh_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1713007379467-3
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1713007379467-4
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_joke
+                  name: id
+                  type: INT
+              - column:
+                  name: text
+                  type: VARCHAR(255)
+            tableName: joke
+  - changeSet:
+      id: 1713007379467-5
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_jokehistory
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: call_time
+                  type: DATETIME
+              - column:
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  name: joke_id
+                  type: INT
+            tableName: joke_history
+  - changeSet:
+      id: 1713007379467-6
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+            tableName: users
+  - changeSet:
+      id: 1713007379467-7
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: joke_id
+            baseTableName: joke_history
+            constraintName: FK_JOKEHISTORY_ON_JOKE
+            referencedColumnNames: id
+            referencedTableName: joke
+  - changeSet:
+      id: 1713007379467-8
+      author: Sapiony (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: joke_history
+            constraintName: FK_JOKEHISTORY_ON_USER
+            referencedColumnNames: id
+            referencedTableName: users
+
